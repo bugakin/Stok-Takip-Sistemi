@@ -1,0 +1,69 @@
+﻿@model StockControl_EntityLayer.Product
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header text-center bg-primary text-white">
+            <h1>Update Product</h1>
+        </div>
+        <div class="card-body">
+            <h4 class="text-center mb-4">Product Details</h4>
+            <hr />
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form asp-action="Update">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="ProductName" class="form-label"></label>
+                            <input asp-for="ProductName" class="form-control" />
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="UnitPrice" class="form-label"></label>
+                            <input asp-for="UnitPrice" class="form-control" />
+                            <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Stock" class="form-label"></label>
+                            <input asp-for="Stock" class="form-control" />
+                            <span asp-validation-for="Stock" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ExpireDate" class="form-label"></label>
+                            <input asp-for="ExpireDate" class="form-control" />
+                            <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CategoryID" class="form-label"></label>
+                            <select asp-for="CategoryID" class="form-select" asp-items="@ViewBag.Categories">
+                                <option value="">Select a category</option>
+                            </select>
+                            <span asp-validation-for="CategoryID" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SupplierID" class="form-label"></label>
+                            <select asp-for="SupplierID" class="form-select" asp-items="@ViewBag.Suppliers">
+                                <option value="">Select a supplier</option>
+                            </select>
+                            <span asp-validation-for="SupplierID" class="text-danger"></span>
+                        </div>
+
+                        <input asp-for="ID" type="hidden" class="form-control" />
+
+                        <div class="d-grid">
+                            <input type="submit" value="Save" class="btn btn-success btn-lg" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

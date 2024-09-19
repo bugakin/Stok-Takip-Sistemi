@@ -1,0 +1,72 @@
+﻿@model IEnumerable<StockControl_EntityLayer.Product>
+
+@{
+    ViewData["Title"] = "Ürün Listesi";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="card-title">Ürün Listesi</h2>
+            <a asp-action="Create" class="btn btn-light float-end">
+                <i class="bi bi-plus-circle"></i> Yeni Ürün Ekle
+            </a>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.UnitPrice)</th>
+                        <th>@Html.DisplayNameFor(model => model.Stock)</th>
+                        <th>@Html.DisplayNameFor(model => model.Category.CategoryName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Supplier.SupplierName)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Supplier.SupplierName)</td>
+                            <td>
+                                @if (item.IsActive)
+                                {
+                                    <span class="badge bg-success">Aktif</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Pasif</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="d-flex">
+                                    <a class="btn btn-warning btn-sm me-2" asp-controller="Product" asp-action="Update" asp-route-id="@item.ID">
+                                        <i class="bi bi-pencil-square"></i> Güncelle
+                                    </a>
+                                    @if (item.IsActive)
+                                    {
+                                        <a class="btn btn-danger btn-sm" asp-controller="Product" asp-action="Delete" asp-route-id="@item.ID">
+                                            <i class="bi bi-x-circle"></i> Pasif Et
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-success btn-sm" asp-controller="Product" asp-action="MakeActive" asp-route-id="@item.ID">
+                                            <i class="bi bi-check-circle"></i> Aktif Et
+                                        </a>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
